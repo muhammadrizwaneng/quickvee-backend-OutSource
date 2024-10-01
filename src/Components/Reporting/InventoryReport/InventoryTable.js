@@ -1,47 +1,27 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchItemSalesData } from "../../../Redux/features/Reports/ItemSales/ItemSalesSlice";
-import { useAuthDetails } from "../../../Common/cookiesHelper";
 import { Grid } from "@mui/material";
-
-import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import { priceFormate } from "../../../hooks/priceFormate";
-import { SkeletonTable } from "../../../reuseableComponents/SkeletonTable";
-import sortIcon from "../../../Assests/Category/SortingW.svg";
-import { SortTableItemsHelperFun } from "../../../helperFunctions/SortTableItemsHelperFun";
-import PasswordShow from "../../../Common/passwordShow";
-import NoDataFound from "../../../reuseableComponents/NoDataFound";
-import useDelayedNodata from "../../../hooks/useDelayedNoData";
 import plusIcon from "../../../Assests/Products/plusIcon.svg";
 
 import InventoryFilter from "./InventoryFilter";
 import InventoryMeasures from "./InventoryMeasures";
 import InventoryTableColumns from "./InventoryTableColumns";
+import InventoryColumns from "./InventoryColumns";
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
 const InventoryTable = (props) => {
-
   const [leftStickyOffset, setLeftStickyOffset] = useState(0);
-  //start table columns
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
+  // For opening and closing InventoryTableColumns modal
+  const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
-
-  const handleClose = (value) => {
+  const handleClose = () => {
     setOpen(false);
-    setSelectedValue(value);
   };
-  //end table columns
+
   const tableRef = useRef(null);
+
   useEffect(() => {
     if (tableRef.current) {
       const tableHeaders = tableRef.current.querySelectorAll("th");
@@ -65,7 +45,10 @@ const InventoryTable = (props) => {
     <>
       <Grid container className="box_shadow_div">
         <Grid item xs={12}>
+          {/* Inventory Filter */}
           <InventoryFilter />
+          
+          {/* Table */}
           <div className="custom-table">
             <table ref={tableRef}>
               <thead>
@@ -77,13 +60,10 @@ const InventoryTable = (props) => {
                   <th>Category</th>
                   <th
                     className="left-sticky"
-                  // style={{ left: `${leftStickyOffset}px`, position: "sticky" }}
+                    style={{ left: `${leftStickyOffset}px`, position: "sticky" }}
                   >
-                    <img
-                      style={{ height: "40px", width: "40px" }}
-                      src={plusIcon}
-                      alt="plusIcon"
-                    />
+                    <InventoryColumns />
+                    
                   </th>
                   <th>Closing Inventory</th>
                   <th>Inventory sold<br />per day</th>
@@ -91,22 +71,26 @@ const InventoryTable = (props) => {
                   <th>Days Cover</th>
                   <th>Sell-through<br />rate</th>
                   <th>Revenue</th>
-                  <th>Gross Pro</th>
+                  <th>Gross Profit</th>
                   <th className="right-sticky">
-                    <InventoryMeasures />
-                    {/* <img
-                      style={{ height: "40px", width: "40px" }}
-                      src={plusIcon}
-                      alt="plusIcon"
-                    /> */}
+                    <button onClick={handleClickOpen}>
+                      <img
+                        style={{ height: "40px", width: "40px" }}
+                        src={plusIcon}
+                        alt="plusIcon"
+                      />
+                    </button>
+                    <InventoryTableColumns open={open} handleClose={handleClose} />
                   </th>
                 </tr>
               </thead>
+              
               <tbody>
+               
                 <tr>
                   <td>Product Name 1<span>10012</span></td>
                   <td>9023</td>
-                  <td>zara</td>
+                  <td>Zara</td>
                   <td>Akash</td>
                   <td>-</td>
                   <td></td>
@@ -115,15 +99,14 @@ const InventoryTable = (props) => {
                   <td>5</td>
                   <td>2</td>
                   <td>-</td>
-                  <td>$20.10458</td>
-                  <td>$200.458</td>
+                  <td>$20.10</td>
+                  <td>$200.46</td>
                   <td></td>
-
                 </tr>
                 <tr>
-                  <td>Product Name 1<span>10012</span></td>
-                  <td>9023</td>
-                  <td>zara</td>
+                  <td>Product Name 2<span>10013</span></td>
+                  <td>9024</td>
+                  <td>Zara</td>
                   <td>Akash</td>
                   <td>-</td>
                   <td></td>
@@ -132,13 +115,12 @@ const InventoryTable = (props) => {
                   <td>5</td>
                   <td>2</td>
                   <td>-</td>
-                  <td>$20.10458</td>
-                  <td>$200.458</td>
+                  <td>$20.10</td>
+                  <td>$200.46</td>
                   <td></td>
-
-
                 </tr>
               </tbody>
+              
               <tfoot>
                 <tr>
                   <td>Totals</td>
@@ -155,14 +137,12 @@ const InventoryTable = (props) => {
                   <td>Footer 12</td>
                   <td>Footer 13</td>
                   <td></td>
-
                 </tr>
               </tfoot>
-
             </table>
           </div>
-        </Grid >
-      </Grid >
+        </Grid>
+      </Grid>
     </>
   );
 };

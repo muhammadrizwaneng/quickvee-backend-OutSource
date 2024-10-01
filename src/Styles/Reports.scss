@@ -123,3 +123,114 @@
         }
     }
 }
+
+// css for measure table 
+
+.d-flex{
+    display: flex;
+  }
+  .flex-end{
+    justify-content: flex-end;
+  }
+  .mb-20{
+    margin-bottom: 20px;
+  }
+  .align-center{
+    align-items: center;
+  }
+  .pr-20{
+    padding-right: 20px;
+  }
+  .px30-py15{
+    padding: 15px 30px;
+  }
+  .pl-30{
+    padding-left:30px;
+  }
+  .px-30{
+    padding: 0 30px;
+  }
+  .mb-10{
+    margin-bottom: 10px;
+  }
+  .mb-20{
+    margin-bottom: 20px;
+  }
+  .measure-container{
+    max-width: 969px;
+    max-height: 652px;
+    overflow-y: auto;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding-bottom: 30px;
+    .btn {
+        border-radius: 4px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        line-height: 20px;
+        color: #000;
+        min-width: 97px;
+        height: 40px;
+        padding: 6px 12px;
+        &.btn-gray{
+          background-color: #E8E8E8;
+        }
+        &.btn-blue{
+          background: #0A64F9;
+          color: #fff;
+        }
+      }
+  }
+  .dialog-heading{
+    color: #000000;
+    font-size: 18px;
+    line-height: 26px;
+    margin: 0;
+    font-weight: 400;
+  }
+  .form-title{
+    color: #000000;
+    font-size: 15px;
+    line-height: 21px;
+    margin: 0;
+    margin-bottom: 5px;
+    font-weight: 400;
+  }
+  .line-through{
+    display: block;
+    height: 1px;
+    background-color: #E5E5E5;
+    flex: 1;
+  }
+  .sub-title{
+    color: #5E5E5E;
+    font-size: 12px;
+    line-height: 16px;
+    word-break: break-word;
+    margin: 0;
+  }
+  
+  input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+  }
+  /* width */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 0 5px 5px 0;
+    background-color: #fff;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #e2e2e2; 
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-button{
+    display: none;
+  }

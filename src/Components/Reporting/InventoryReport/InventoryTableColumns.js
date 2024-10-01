@@ -1,17 +1,15 @@
-import React, { forwardRef } from 'react';
-import { Box, Button, Checkbox, Container,  Grid, Typography,Grow } from '@mui/material'
+import React, { useState } from 'react';
+import { Box, Button, Checkbox, Container, Grid, Typography, Grow } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 
-const TransitionComponent = forwardRef(function Transition(props, ref) {
-  return <Grow  in={props.in} timeout={500} ref={ref} {...props} />;
-});
+// const TransitionComponent = forwardRef(function Transition(props, ref) {
+//   return <Grow  in={props.in} timeout={500} ref={ref} {...props} />;
+// });
 
-const InventoryTableColumns = (props) => {
-  const { onClose, selectedValue, open } = props;
+const InventoryTableColumns = ({ open, handleClose }) => {
+  // const { onClose, selectedValue, open } = props;
 
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
+ 
 
   // const handleListItemClick = (value: string) => {
   //   onClose(value);
@@ -19,318 +17,426 @@ const InventoryTableColumns = (props) => {
 
   return (
     <Dialog
-     maxWidth={'lg'}
-    // TransitionComponent={TransitionComponent}
-    onClose={handleClose}
-    open={open}
-    keepMounted
-    PaperProps={{
-      style: {
-        height: '400px', // Fixed height
-        maxHeight: '80vh', // Maximum height for responsiveness
-      },
-    }}
-    BackdropProps={{
-      style: { backgroundColor: open ? 'transparent' : 'transparent' }, // Set backdrop color to transparent
-    }}
+      maxWidth={'lg'}
+      
+      // TransitionComponent={TransitionComponent}
+      onClose={handleClose}
+      open={open}
+      keepMounted
+      PaperProps={{
+        style: {
+          height: '652px', // Fixed height
+          maxHeight: '80vh', // Maximum height for responsiveness
+        },
+        sx: {
+          boxShadow: '0px 3px 6px #00000029',
+          position: 'absolute',
+          top: 0,
+        },
+      }}
+      BackdropProps={{
+        style: { backgroundColor: open ? 'transparent' : 'transparent' }, // Set backdrop color to transparent
+      }}
     >
-    <Container maxWidth="lg">
-    <Grid container spacing={2}>
-      <Grid size={8}>
-        <Typography variant='h5'>
-          Choose other measure to show
-        </Typography>
-      </Grid>
-      <Grid offset={1}></Grid>
-      <Grid size={2} container spacing={2}>
-        <Button  className='btn_cancel'>Cancel</Button>
-        <Button variant='contained'>Apply</Button>
-      </Grid>
-    </Grid>
-  
-      <Box>
-        <Typography variant='h6'>
-            Sale
-        </Typography>
-      </Box>
-      <Grid container spacing={2}>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
+      <div className="measure-container">
+        <Grid container className="align-center px30-py15">
+          <Grid item xs={7}>
+            <h5 className="dialog-heading">Choose other measure to show</h5>
           </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Revenue</Typography>
-              <Box>Total value of items sold</Box>
+          <Grid item xs={5} sx={{gap:2}} container className="d-flex flex-end">
+            <button className="btn btn-gray" onClick={handleClose}>Cancel</button>
+            <button className="btn btn-blue">Apply</button>
           </Grid>
         </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
+        <Box className="d-flex align-center pl-30 mb-10">
+          <h6 className="form-title pr-20">Sale</h6>
+          <div className="line-through"></div>
+        </Box>
+        <Grid container className="px-30 mb-20">
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Revenue</h6>
+                <p className="sub-title">Total value of items sold</p>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Gross profit</Typography>
-              <Box>Total revenue in the specified period less the total cost of products sold for that period</Box>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Gross profit</h6>
+                <p className="sub-title">
+                  Total revenue in the specified period less the total cost of
+                  products sold for that period
+                </p>
+              </Grid>
+            </Grid>
           </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Margin (%)</h6>
+                <p className="sub-title">
+                Percentage of revenue that you keep as gross profit
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+         <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Customer count</h6>
+                <p className= "sub-title">
+                Number of unique registered customers served in the specified period
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Sale count</h6>
+                <p className= "sub-title">
+                Total number of sales and returns
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Items sold</h6>
+                <p className= "sub-title">
+                Total number of items sold
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Items sold per day</h6>
+                <p className= "sub-title">
+                Average number of items sold per day
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Avg. items per sale</h6>
+                <p className= "sub-title">
+                Average number of items per sale
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Avg. sale value</h6>
+                <p className= "sub-title">
+                Average transaction/sale value
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Discounted (%)</h6>
+                <p className= "sub-title">
+                Average discount given on total sale value (excl. tax)
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+          
+          {/* Add more checkbox items like above */}
         </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
+        <Box className="d-flex align-center pl-30 mb-10">
+          <h6 className="form-title pr-20">Product prices & value</h6>
+          <div className="line-through"></div>
+        </Box>
+        <Grid container className="px-30 mb-20">
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Avg. cost</h6>
+                <p className="sub-title">Average supply price of a single item</p>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Margin (%)</Typography>
-              <Box>Percentage of revenue that you keep as gross profit</Box>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Inventory cost</h6>
+                <p className="sub-title">
+                Total value of inventory on hand using average cost
+                </p>
+              </Grid>
+            </Grid>
           </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Cost of goods sold</h6>
+                <p className="sub-title">
+                Total cost of products sold
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+         <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Retail value (excl. tax)</h6>
+                <p className= "sub-title">
+                Total value of inventory on hand using retail price</p>
+              </Grid>
+            </Grid>
+          </Grid>
+          
+          
+          {/* Add more checkbox items like above */}
         </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
+        <Box className="d-flex align-center pl-30 mb-10">
+          <h6 className="form-title pr-20">Inventory levels</h6>
+          <div className="line-through"></div>
+        </Box>
+    
+        <Grid container className="px-30 mb-20">
+        <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Current inventory</h6>
+                <p className="sub-title">
+                Amount of inventory as of today
+                </p>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Customer count</Typography>
-              <Box>Number of unique registered customers served in the specified period</Box>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Start date inventory</h6>
+                <p className="sub-title">Amount of inventory as of the start of chosen dates</p>
+              </Grid>
+            </Grid>
           </Grid>
+      
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Reorder point</h6>
+                <p className="sub-title">
+                Threshold for inventory being low
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+         <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Reorder amount</h6>
+                <p className= "sub-title">
+                Default quantity ordered when added to a purchase order</p>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Inbound inventory</h6>
+                <p className="sub-title">
+                Amount of incoming inventory from dispatched purchase orders and sent transfers
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+          
+          {/* Add more checkbox items like above */}
         </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
+        <Box className="d-flex align-center pl-30 mb-10">
+          <h6 className="form-title pr-20">Inventory performance</h6>
+          <div className="line-through"></div>
+        </Box>
+    
+        <Grid container className="px-30 mb-20">
+        <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Sell-through rate</h6>
+                <p className="sub-title">
+                Percentage of solid items out of all items available to be sold
+                </p>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Sale count</Typography>
-              <Box>Total number of sales and returns</Box>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Return count</h6>
+                <p className="sub-title">Numbers of sold items returned by customers</p>
+              </Grid>
+            </Grid>
           </Grid>
+      
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Days cover</h6>
+                <p className="sub-title">
+                Estimated number of days current inventory will last
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+         <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Returns (%)</h6>
+                <p className= "sub-title">
+                Percentage of sold items that have been returned by customers</p>
+              </Grid>
+            </Grid>
+          </Grid>
+         
+          
+          {/* Add more checkbox items like above */}
         </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
+        <Box className="d-flex align-center pl-30 mb-10">
+          <h6 className="form-title pr-20">Dates</h6>
+          <div className="line-through"></div>
+        </Box>
+    
+        <Grid container className="px-30 mb-20">
+        <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Created</h6>
+                <p className="sub-title">
+                Date this product was first added to your store
+                </p>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Items sold</Typography>
-              <Box>Total number of items sold</Box>
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">First sale</h6>
+                <p className="sub-title">Date of the first sale</p>
+              </Grid>
+            </Grid>
           </Grid>
+      
+          <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Last sale</h6>
+                <p className="sub-title">
+                Date of the last sale
+                </p>
+              </Grid>
+            </Grid>
+          </Grid>
+         <Grid item xs={12} sm={4} md={3}>
+            <Grid container sx={{ display: "flex", gap: 2 }}>
+              <Grid item>
+                <input type="checkbox" />
+              </Grid>
+              <Grid item xs={10}>
+                <h6 className="form-title">Last received</h6>
+                <p className= "sub-title">
+                Date this product was last received on a purchase OrderSource</p>
+              </Grid>
+            </Grid>
+          </Grid>
+         
+          
+          {/* Add more checkbox items like above */}
         </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Items sold per day</Typography>
-              <Box>Average number of items sold per day</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Average number of items sold per day</Typography>
-              <Box>Average number of items sold per day</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Avg. sale value</Typography>
-              <Box>Average transaction/sale value</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Discounted (%)</Typography>
-              <Box>Average discount given on total sale value (excl. tax)</Box>
-          </Grid>
-        </Grid>
-
-      </Grid>
-      <Box>
-        <Typography variant='h6'>
-            Product prices & values
-        </Typography>
-      </Box>
-      <Grid container spacing={2}>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Avg. cost</Typography>
-              <Box>Average supply price of a single item</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Inventory cost</Typography>
-              <Box>Total value of inventory on hand using average cost</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Cost of goods sold</Typography>
-              <Box>Cost of goods sold</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Retail value (excl. tax)</Typography>
-              <Box>Total value of inventory on hand using retail price</Box>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Box>
-        <Typography variant='h6'>
-        Inventory levels
-        </Typography>
-      </Box>
-      <Grid container spacing={2}>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Current inventory</Typography>
-              <Box>Amount of inventory as of today</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Start date inventory</Typography>
-              <Box>Amount of inventory as of the start of chosen dates</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Reorder point</Typography>
-              <Box>Threshold for inventory being low</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Reorder amount</Typography>
-              <Box>Default quantity ordered when added to a purchase order</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Inbound inventory</Typography>
-              <Box>Amount of incoming inventory form dispatched purchase orders and send transfers</Box>
-          </Grid>
-        </Grid>
-      </Grid>
-
-      <Box>
-        <Typography variant='h6'>
-        Inventory performances
-        </Typography>
-      </Box>
-      <Grid container spacing={2}>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Sell-through rate</Typography>
-              <Box>Percentage of solid items out of all items available to be sold</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Return count</Typography>
-              <Box>Numbers of sold items returned by customers</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Days cover</Typography>
-              <Box>Estimated numbers of days current inventory will last</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Return (%)</Typography>
-              <Box>Percentage of solid items that have been returned by customers</Box>
-          </Grid>
-        </Grid>
-      </Grid>
-
-
-      <Box>
-        <Typography variant='h6'>
-        Dates
-        </Typography>
-      </Box>
-      <Grid container spacing={2}>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Created</Typography>
-              <Box>Date this product was first added to your store</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>First sale</Typography>
-              <Box>Date of the first sale</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Last sale</Typography>
-              <Box>Date of last sale</Box>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} size={3}>
-          <Grid size={2}>
-           <Checkbox/>
-          </Grid>
-          <Grid size={10}>
-            <Typography variant='h6'>Last received</Typography>
-              <Box>Date this product was last received on a purchase order</Box>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Container>
+     
+      </div>
     </Dialog>
   );
 }
