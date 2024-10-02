@@ -96,6 +96,9 @@ const NewMainItemSales = lazy(
 const NewItemCreatedBetweenMain = lazy(
   () => import("../Reporting/NewItemCreatedBetween/NewItemCreatedBetweenMain")
 );
+const InventoryPerformance = lazy(
+  () => import("../Reporting/InventoryPerformance/InventoryPerformanceMain")
+);
 const Permission = lazy(() => import("../StoreSetting/AddEmployee/Permission"));
 const OrderSummaryDetails = lazy(
   () =>
@@ -366,6 +369,8 @@ const LeftSide = ({ visible }) => {
         return <NewMainItemSales />;
       case "item-create-between":
         return <NewItemCreatedBetweenMain />;
+      case "inventory-performance":
+          return <InventoryPerformance />;
       case "permission":
         return <Permission />;
       case "order-summary":

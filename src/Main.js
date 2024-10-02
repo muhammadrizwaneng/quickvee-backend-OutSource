@@ -89,6 +89,7 @@ const Main = ({ visible }) => {
       {visible === "flash-resigter" && <Layout visible={visible} />}
       {visible === "employee-list" && <Layout visible={visible} />}
       {visible === "item-create-between" && <Layout visible={visible} />}
+      {visible === "inventory-performance" && <Layout visible={visible} />}
       {visible === "recorder-inventory" && <Layout visible={visible} />}
       {visible === "employee-working-hours" && <Layout visible={visible} />}
       {visible === "shift-summary" && <Layout visible={visible} />}
