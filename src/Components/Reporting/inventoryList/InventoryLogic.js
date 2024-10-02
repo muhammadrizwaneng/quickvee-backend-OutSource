@@ -25,7 +25,7 @@ export default function InventoryLogic() {
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(10);
   const [listingType, setListingType] = useState(1);
-  const [message, setMessage] = useState(""); // message display
+  const [message, setMessage] = useState(""); // message display 
 
   const [laodMoreData, setLoadMoreData] = useState(false); //load button hide and show
   const [endOfDataList, setEndOfDataList] = useState(false); //
