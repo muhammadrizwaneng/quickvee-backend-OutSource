@@ -19,7 +19,7 @@ export default function InventoryLogic() {
     PasswordShow();
   const [inventory, setInventory] = useState("");
   const [category, setCategory] = useState([]);
-  const [searchProduct, setsearchProduct] = useState([]); // invenotry list display
+  const [searchProduct, setsearchProduct] = useState([]); // invenotry list display for testing
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectCategoryId, setSelectCategoryId] = useState("");
   const [offset, setOffset] = useState(0);
